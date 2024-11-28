@@ -28,7 +28,10 @@ poetry run python -m bot.py
 
 ## 🎼 Diagrama de Componentes
 ```mermaid
-graph LR;
+flowchart LR;
+    Bot[🤖 Bot]
+    GoogleSpreadsheet[📈 Google Spreadsheet]
+    BigBox[🎁 Bigbox]
     Bot-->GoogleSpreadsheet;
     Bot-->BigBox;
 ```
@@ -37,14 +40,17 @@ graph LR;
 ```mermaid
 sequenceDiagram
     actor Usuario
-    participant Bot
-    participant Catalog
-    participant GoogleSpreadSheet
+    participant Bot as 🤖 Bot
+    participant Catalog as 🗄️ Catalog
+    participant GoogleSpreadSheet as 📈 GoogleSpreadSheet
+    participant RecomendationService as 👍 RecomendationService
+    participant BigBox as 🎁 Bigbox
 
     Bot-->>Catalog: load_catalog
     Catalog-->>GoogleSpreadSheet: get_spreadsheet
-
+    activate GoogleSpreadSheet
     GoogleSpreadSheet-->>Catalog: spreadsheet
+    deactivate GoogleSpreadSheet
     Catalog-->>Bot: 
 
     Usuario->>Bot: /start
