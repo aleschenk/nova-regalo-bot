@@ -1,0 +1,9 @@
+dist
+*.log
+.idea
+
+__pycache__
+
+**/*.json
+
+telegram_bot_token.txt
