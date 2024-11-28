@@ -26,8 +26,55 @@ poetry run python -m bot.py
 
 # 📐 Arquitectura
 
+## 🎼 Diagrama de Componentes
 ```mermaid
 graph LR;
     Bot-->GoogleSpreadsheet;
     Bot-->BigBox;
+```
+
+## ➡️ Diagrama de Sequencia
+```mermaid
+sequenceDiagram
+    participant Usuario
+    participant Bot
+    participant Catalog
+    participant GoogleSpreadSheet
+
+    Bot-->>+Catalog: load_catalog
+    Catalog-->>+GoogleSpreadSheet: get_spreadsheet
+
+    GoogleSpreadSheet-->>+Catalog: spreadsheet
+    Catalog-->>+Bot: .
+
+    Usuario->>+Bot: /start
+
+    Bot-->>+Usuario: Opcion: Sugerir
+    Usuario->>+Bot: Sugerir
+
+    Bot-->>+Usuario: Rango de Edad
+    Usuario->>+Bot: 18-30
+    
+    Bot-->>+Usuario: Rango de Precio
+    Usuario->>+Bot: $10.000-$15.0000
+
+    Bot-->>+Usuario: Relacion
+    Usuario->>+Bot: Amistad
+
+    Bot->>+Usuario: Evento
+    Usuario-->>+Bot: Cumpleaños
+
+    Bot-->>+Usuario: Interes
+    Usuario->>+Bot: Aventura
+
+    Bot->>+RecomendationService: recommend
+    RecomendationService->>+Catalog: fetch_items
+    Catalog-->>+RecomendationService: items
+
+    RecomendationService-->>+Bot: item
+    
+    Bot->>+BigBox: fetch_box
+    BigBox-->>+Bot: box
+
+    Bot-->>+Usuario: recomendacion
 ```
