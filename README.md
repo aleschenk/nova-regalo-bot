@@ -36,45 +36,45 @@ graph LR;
 ## ➡️ Diagrama de Sequencia
 ```mermaid
 sequenceDiagram
-    participant Usuario
+    actor Usuario
     participant Bot
     participant Catalog
     participant GoogleSpreadSheet
 
-    Bot-->>+Catalog: load_catalog
-    Catalog-->>+GoogleSpreadSheet: get_spreadsheet
+    Bot-->>Catalog: load_catalog
+    Catalog-->>GoogleSpreadSheet: get_spreadsheet
 
-    GoogleSpreadSheet-->>+Catalog: spreadsheet
-    Catalog-->>+Bot: .
+    GoogleSpreadSheet-->>Catalog: spreadsheet
+    Catalog-->>Bot: 
 
-    Usuario->>+Bot: /start
+    Usuario->>Bot: /start
 
-    Bot-->>+Usuario: Opcion: Sugerir
-    Usuario->>+Bot: Sugerir
+    Bot-->>Usuario: Opcion: Sugerir
+    Usuario->>Bot: Sugerir
 
-    Bot-->>+Usuario: Rango de Edad
-    Usuario->>+Bot: 18-30
+    Bot-->>Usuario: Rango de Edad
+    Usuario->>Bot: 18-30
     
-    Bot-->>+Usuario: Rango de Precio
-    Usuario->>+Bot: $10.000-$15.0000
+    Bot-->>Usuario: Rango de Precio
+    Usuario->>Bot: $10.000-$15.0000
 
-    Bot-->>+Usuario: Relacion
-    Usuario->>+Bot: Amistad
+    Bot-->>Usuario: Relacion
+    Usuario->>Bot: Amistad
 
-    Bot->>+Usuario: Evento
-    Usuario-->>+Bot: Cumpleaños
+    Bot->>Usuario: Evento
+    Usuario-->>Bot: Cumpleaños
 
-    Bot-->>+Usuario: Interes
-    Usuario->>+Bot: Aventura
+    Bot-->>Usuario: Interes
+    Usuario->>Bot: Aventura
 
-    Bot->>+RecomendationService: recommend
-    RecomendationService->>+Catalog: fetch_items
-    Catalog-->>+RecomendationService: items
+    Bot->>RecomendationService: recommend
+    RecomendationService->>Catalog: fetch_items
+    Catalog-->>RecomendationService: items
 
-    RecomendationService-->>+Bot: item
-    
-    Bot->>+BigBox: fetch_box
-    BigBox-->>+Bot: box
+    RecomendationService-->>Bot: item
 
-    Bot-->>+Usuario: recomendacion
+    Bot->>BigBox: fetch_box
+    BigBox-->>Bot: box
+
+    Bot-->>Usuario: recomendacion
 ```
